@@ -974,7 +974,7 @@ DROP TABLE IF EXISTS `rails_persons`;
 /*!50001 DROP VIEW IF EXISTS `rails_persons`*/;
 SET @saved_cs_client     = @@character_set_client;
 SET character_set_client = utf8;
-/*!50001 CREATE VIEW `rails_persons` AS SELECT
+/*!50001 CREATE VIEW `rails_persons` AS SELECT 
  1 AS `id`,
  1 AS `wca_id`,
  1 AS `subId`,
@@ -1278,7 +1278,8 @@ CREATE TABLE `wcif_extensions` (
 /*!50001 SET character_set_results     = utf8mb4 */;
 /*!50001 SET collation_connection      = utf8mb4_unicode_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
-/*!50001 VIEW `rails_persons` AS select `Persons`.`rails_id` AS `id`,`Persons`.`id` AS `wca_id`,`Persons`.`subId` AS `subId`,`Persons`.`name` AS `name`,`Persons`.`countryId` AS `countryId`,`Persons`.`gender` AS `gender`,`Persons`.`year` AS `year`,`Persons`.`month` AS `month`,`Persons`.`day` AS `day`,`Persons`.`comments` AS `comments`,`Persons`.`incorrect_wca_id_claim_count` AS `incorrect_wca_id_claim_count` from `Persons` */;
+/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
+/*!50001 VIEW `rails_persons` AS select `persons`.`rails_id` AS `id`,`persons`.`id` AS `wca_id`,`persons`.`subId` AS `subId`,`persons`.`name` AS `name`,`persons`.`countryId` AS `countryId`,`persons`.`gender` AS `gender`,`persons`.`year` AS `year`,`persons`.`month` AS `month`,`persons`.`day` AS `day`,`persons`.`comments` AS `comments`,`persons`.`incorrect_wca_id_claim_count` AS `incorrect_wca_id_claim_count` from `persons` */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
 /*!50001 SET collation_connection      = @saved_col_connection */;
@@ -1495,4 +1496,5 @@ INSERT INTO `schema_migrations` (version) VALUES
 ('20190113180945'),
 ('20190117112257'),
 ('20190208175255'),
-('20190221194112');
+('20190221194112'),
+('20190514234342');
