@@ -10,11 +10,12 @@ class CompetitionsMailer < ApplicationMailer
     I18n.with_locale :en do
       @competition = competition
       @confirmer = confirmer
+      @months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
       mail(
         to: Team.wcat.email,
         cc: competition.delegates.flat_map { |d| [d.email, d.senior_delegate&.email] }.compact.uniq,
         reply_to: confirmer.email,
-        subject: "#{confirmer.name} just confirmed #{competition.name}",
+        subject: "#{competition.name} is confirmed",
       )
     end
   end
