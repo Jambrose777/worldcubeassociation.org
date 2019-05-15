@@ -6,7 +6,6 @@
 
 <% @competition.delegates.map do |delegate| %> 
   <% if Team.probation.current_members.map { |member| member.user_id }.include?(delegate.id) %>
-  <p>  </p>
     <h2 class="alert"> <%= delegate.name %> is currently on probation. Please check the Delegates on Probation spreadsheet for more details.</h2>
     <% end %>
   <% end %>
