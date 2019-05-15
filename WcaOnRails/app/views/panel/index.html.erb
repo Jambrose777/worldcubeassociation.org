@@ -44,6 +44,9 @@
       <li>
         <%= link_to "Upcoming competitions for your subordinate Delegates", competitions_for_senior_path %>
       </li>
+      <li>
+        <%= link_to "Modify Delegates on Probation", edit_team_path(Team.probation) %>
+      </li>
     </ul>
   <% end %>
 
