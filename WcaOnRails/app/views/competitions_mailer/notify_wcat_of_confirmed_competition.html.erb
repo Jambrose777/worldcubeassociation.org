@@ -7,7 +7,7 @@ Competition Announcement Team, <br>
   <% if @competition.year === @competition.endYear %>
     <% if @competition.month === @competition.endMonth %>
       <% if @competition.day === @competition.endDay %>
-      <%= @months[@competition.month - 1] %> <%= @competition.day %>, <%= @competition.year %>,
+        <%= @months[@competition.month - 1] %> <%= @competition.day %>, <%= @competition.year %>,
       <% else %>
         <%= @months[@competition.month - 1] %> <%= @competition.day %>-<%= @competition.endDay %>, <%= @competition.year %>,
         <% end %>
@@ -36,6 +36,23 @@ Competition Announcement Team, <br>
   <% if Team.probation.current_members.map { |member| member.user_id }.include?(delegate.id) %>
     <span class="alert">
       <%= delegate.name %> is currently on probation. Please check the Delegates on Probation spreadsheet for more details.<br>
+      <br>
+    </span>
+    <% end %>
+  <% end %>
+
+<% @competition.nearby_competitions(Competition::NEARBY_DAYS_WARNING, Competition::NEARBY_DISTANCE_KM_WARNING).each do |c| %>
+  <% if @competition.dangerously_close_to?(c) %>
+    <span class="alert">
+      This competition has a potential proximity conflict with
+      <%= link_to c.name, admin_edit_competition_url(c) %>
+      which is
+      <% if (@competition.start_date - c.start_date).to_i > 0 %>
+        <%= (@competition.start_date - c.start_date).to_i %> days before
+      <% else %>
+      <%= (c.start_date - @competition.start_date).to_i %> days after
+        <% end %>
+      and <%= @competition.kilometers_to(c).round(2) %> km away.<br>
       <br>
     </span>
     <% end %>
