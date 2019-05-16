@@ -565,10 +565,10 @@ class User < ApplicationRecord
       team_leader?(team) ||
 
       # The leader of the WDC can edit the banned competitors list
-      (team == Team.banned && team_leader?(Team.wdc))
+      (team == Team.banned && team_leader?(Team.wdc)) ||
 
-      # Senior Delegates can edit Delegates on probation
-      (team == Team.probation && senior_delegate?)
+      # Senior Delegates and WFC Leader can edit Delegates on probation
+      (team == Team.probation && (senior_delegate? || team_leader?(Team.wfc)))
   end
 
   def can_view_banned_competitors?
