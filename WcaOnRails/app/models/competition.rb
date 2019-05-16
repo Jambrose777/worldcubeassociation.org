@@ -185,7 +185,7 @@ class Competition < ApplicationRecord
   MAX_SPAN_DAYS = 6
 
   # https://www.worldcubeassociation.org/regulations/guidelines.html#8a4++
-  SHOULD_BE_ANNOUNCED_GTE_THIS_MANY_DAYS = 29
+  SHOULD_BE_ANNOUNCED_GTE_THIS_MANY_DAYS = 28
 
   validates :cityName, city: true
 
@@ -860,6 +860,13 @@ class Competition < ApplicationRecord
   def has_date_errors?
     valid?
     !errors[:start_date].empty? || !errors[:end_date].empty? || (!showAtAll && days_until && days_until < SHOULD_BE_ANNOUNCED_GTE_THIS_MANY_DAYS)
+  end
+
+  validate :start_date_must_be_28_days_in_advanced
+  def start_date_must_be_28_days_in_advanced
+    if !User.find(editing_user_id).can_admin_competitions? && days_until < SHOULD_BE_ANNOUNCED_GTE_THIS_MANY_DAYS
+      errors.add(:start_date, I18n.t('competitions.errors.start_date_must_be_28_days_in_advanced'))
+    end
   end
 
   def dangerously_close_to?(c)

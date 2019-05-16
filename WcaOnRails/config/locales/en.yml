@@ -1132,6 +1132,7 @@ en:
       must_contain_delegate: "must contain at least one WCA Delegate"
       not_all_delegates: "are not all Delegates"
       registration_close_after_open: "registration close must be after registration open"
+      start_date_must_be_28_days_in_advanced: "Start date must be at least 28 days in the future."
       end_date_before_start: "End date cannot be before start date."
       refund_date_after_start: "Refund limit date cannot be after start date."
       span_too_many_days: "Competition cannot last more than %{max_days} days."

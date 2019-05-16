@@ -4,9 +4,9 @@ Competition Announcement Team, <br>
 
 <span class="<%= 'alert' if (@competition.start_date - Time.now.to_date).to_i <= 30 %>">
   The competition will take place on
-  <% if @competition.year === @competition.endYear? %>
-    <% if @competition.month === @competition.endMonth? %>
-      <% if @competition.day === @competition.endDay? %>
+  <% if @competition.year === @competition.endYear %>
+    <% if @competition.month === @competition.endMonth %>
+      <% if @competition.day === @competition.endDay %>
       <%= @months[@competition.month - 1] %> <%= @competition.day %>, <%= @competition.year %>,
       <% else %>
         <%= @months[@competition.month - 1] %> <%= @competition.day %>-<%= @competition.endDay %>, <%= @competition.year %>,
