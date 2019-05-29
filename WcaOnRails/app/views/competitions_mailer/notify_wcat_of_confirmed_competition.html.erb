@@ -1,6 +1,6 @@
 Competition Announcement Team, <br>
 <br>
-<strong><%= @confirmer.name %> has confirmed <%= @competition.name %>.</strong><br>
+<strong><%= @confirmer.name %> has confirmed <%= link_to @competition.name, competition_url(@competition) %>.</strong><br>
 
 <span class="<%= 'alert' if (@competition.start_date - Time.now.to_date).to_i <= 30 %>">
   The competition will take place on
@@ -35,7 +35,7 @@ Competition Announcement Team, <br>
 <% @competition.delegates.map do |delegate| %> 
   <% if Team.probation.current_members.map { |member| member.user_id }.include?(delegate.id) %>
     <span class="alert">
-      <%= delegate.name %> is currently on probation. Please check the Delegates on Probation spreadsheet for more details.<br>
+      <%= delegate.name %> is currently on probation. Please check the <%= link_to "Delegates on Probation spreadsheet", "https://docs.google.com/spreadsheets/d/1ZU1lk0niGn-vjmbiDkoROU8qjmdHkNebZ2GCFHm6vvA/edit#gid=1887522006" %> for more details.<br>
       <br>
     </span>
     <% end %>
