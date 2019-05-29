@@ -4,6 +4,8 @@ class TeamMember < ApplicationRecord
   belongs_to :team, -> { with_hidden }
   belongs_to :user
 
+  has_many :reasons, class_name: "ProbationMemberReason"
+
   scope :current, -> { where("end_date IS NULL OR end_date > ?", Date.today) }
   scope :in_official_team, -> { where(team_id: Team.all_official.map(&:id)) }
   scope :leader, -> { where(team_leader: true) }
