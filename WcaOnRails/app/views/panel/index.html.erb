@@ -50,6 +50,18 @@
     </ul>
   <% end %>
 
+
+  <% if current_user.team_leader?(Team.wfc) || current_user.team_senior_member?(Team.wfc) %>
+    <h2>WFC</h2>
+
+    <ul>
+      <li>
+        <%= link_to "Modify Delegates on Probation", edit_team_path(Team.probation) %>
+      </li>
+    </ul>
+  <% end %>
+
+
   <% if current_user&.can_view_leader_material? %>
     <h2>Committee/Team Leaders</h2>
 
@@ -57,11 +69,6 @@
       <li>
         <%= link_to "WCA Committee/Team Member Promotion form", "https://docs.google.com/forms/d/e/1FAIpQLSf3079GXcGUYDmJIIdRt0GPlDA_-aMSBZqk93zDgaFRxG15xQ/viewform" %>
       </li>
-      <% if current_user.team_leader?(Team.wfc) %>
-        <li>
-          <%= link_to "Modify Delegates on Probation", edit_team_path(Team.probation) %>
-        </li>
-        <% end %>
     </ul>
   <% end %>
 
