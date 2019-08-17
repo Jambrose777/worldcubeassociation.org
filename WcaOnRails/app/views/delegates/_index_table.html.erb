@@ -1,0 +1,39 @@
+<%= wca_table table_class: "delegates-stats-table", striped: false,
+            data: { toggle: "table", sort_name: "delegate", search: "true" } do %>
+<thead>
+    <tr>
+    <th class="delegate" data-sortable="true" data-field="delegate">Delegate</th>
+    <th class="position" data-sortable="true">Position</th>
+    <th class="region" data-sortable="true">Region</th>
+    <th class="last" data-sortable="true">Last delegated</th>
+    <th class="first" data-sortable="true">First delegated</th>
+    <th class="total" data-sortable="true">Total delegated</th>
+    <th class="history"></th>
+    </tr>
+</thead>
+<tbody>
+    <% delegates.each do |delegate| %>
+    <% competitions = delegate.delegated_competitions.order_by_date.select(&:is_probably_over?) %>
+    <% user = delegate.user %>
+    <tr class="<%= delegate.delegate_status %>">
+        <td class="delegate" data-toggle="tooltip" data-placement="top" data-container="body" title="<%= user.notes %>">
+        <%= user.name %>
+        <% if current_user&.can_edit_notes_of_user?(user) %>
+            <%= link_to icon("fas", "pencil-alt"), edit_user_path(user) %>
+        <% end %>
+        <%= mail_to user.email, icon("fas", "envelope"), target: "_blank", class: "hide-new-window-icon" %>
+        </td>
+        <td class="position"><%= delegate.delegate_status.humanize %></td>
+        <td class="region"><%= delegate.delegate_region_id %> (<%= delegate.location %>)</td>
+        <td class="last"><%= competitions&.last&.start_date %></td>
+        <td class="first"><%= competitions&.first&.start_date %></td>
+        <td class="total"><%= competitions&.count %></td>
+        <td>
+        <% if current_user&.can_see_admin_competitions? %>
+            <%= link_to "History", competitions_path(display: "admin", years: "all", delegate: user.id) %>
+        <% end %>
+        </td>
+    </tr>
+    <% end %>
+</tbody>
+<% end %>
