@@ -119,6 +119,7 @@ Rails.application.routes.draw do
   post 'upload/image', to: 'upload#image'
 
   get 'admin/delegates' => 'delegates#stats', as: :delegates_stats
+  get 'delegates/index' => 'delegates#index'
 
   get 'robots' => 'static_pages#robots'
 
