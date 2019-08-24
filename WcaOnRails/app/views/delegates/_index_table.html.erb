@@ -24,7 +24,7 @@
         <%= mail_to user.email, icon("fas", "envelope"), target: "_blank", class: "hide-new-window-icon" %>
         </td>
         <td class="position"><%= delegate.delegate_status.humanize %></td>
-        <td class="region"><%= delegate.delegate_region_id %> (<%= delegate.location %>)</td>
+        <td class="region"><%= delegate.delegate_region.name %> (<%= delegate.location %>)</td>
         <td class="last"><%= competitions&.last&.start_date %></td>
         <td class="first"><%= competitions&.first&.start_date %></td>
         <td class="total"><%= competitions&.count %></td>

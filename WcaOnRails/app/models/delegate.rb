@@ -2,6 +2,7 @@
 
 class Delegate < ApplicationRecord
   belongs_to :user
+  belongs_to :delegate_region
 
   has_many :competition_delegates, foreign_key: "delegate_id"
   has_many :delegated_competitions, through: :competition_delegates, source: "competition"
@@ -23,13 +24,6 @@ class Delegate < ApplicationRecord
     if start_date && end_date && start_date >= end_date
       errors.add(:start_date, "must be earlier than end_date")
     end
-  end
-
-  def self.all_regions
-    [
-      DelegateRegion.africa,
-      DelegateRegion.
-    ]
   end
 
 end
