@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class DelegateRegion < ApplicationRecord
+  has_many :delegates
+  has_many :current_delegates, -> { current }, class_name: "Delegate"
 
   default_scope -> { where(is_active: true) }
   scope :with_inactive, -> { unscope(where: :is_active) }
