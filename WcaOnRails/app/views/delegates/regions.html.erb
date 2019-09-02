@@ -1,0 +1,32 @@
+<% provide(:title, 'Delegates Regions') %>
+
+<div class="container">
+    <h1><%= yield(:title) %></h1>
+
+    <div class="table-responsive">
+      <table class="table">
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Delegates</th>
+          <th>Senior</th>
+          <th></th>
+        </tr>
+        <% @delegate_regions.each do |region| %>
+          <tr>
+            <td><%= region.friendly_id %></td>
+            <td><%= region.name %></td>
+            <td>
+             <%= users_to_sentence team.current_members.includes(:user).map(&:user) %>
+            </td>
+            <td>
+               <%= users_to_sentence team.current_members.where(team_leader: true).map(&:user) %>
+            </td>
+            <td>
+             <%= link_to icon("fas", "edit", "Manage"), edit_region_path(region), class: "btn btn-success" %>
+            </td>
+          </tr>
+        <% end %>
+      </table>
+    </div>
+</div>

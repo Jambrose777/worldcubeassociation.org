@@ -7,4 +7,8 @@ class DelegatesController < ApplicationController
   def stats
     @delegates = User.delegates.includes(:senior_delegate)
   end
+
+  def regions
+    @delegate_regions = DelegateRegion.all
+  end
 end
