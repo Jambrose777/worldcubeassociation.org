@@ -7,7 +7,7 @@ class CreateDelegatesTable < ActiveRecord::Migration[5.2]
       t.string :status, null: false
       t.references :delegate_region, null: false
       t.references :delegate_subregion
-      t.references :country
+      t.string :country_id
       t.string :location
       t.date :start_date, null: false
       t.date :end_date

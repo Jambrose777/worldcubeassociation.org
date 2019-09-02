@@ -861,7 +861,7 @@ CREATE TABLE `delegates` (
   `status` varchar(191) NOT NULL,
   `delegate_region_id` bigint(20) NOT NULL,
   `delegate_subregion_id` bigint(20) DEFAULT NULL,
-  `country_id` bigint(20) DEFAULT NULL,
+  `country_id` varchar(191) DEFAULT NULL,
   `location` varchar(191) DEFAULT NULL,
   `start_date` date NOT NULL,
   `end_date` date DEFAULT NULL,
@@ -870,8 +870,7 @@ CREATE TABLE `delegates` (
   PRIMARY KEY (`id`),
   KEY `index_delegates_on_user_id` (`user_id`),
   KEY `index_delegates_on_delegate_region_id` (`delegate_region_id`),
-  KEY `index_delegates_on_delegate_subregion_id` (`delegate_subregion_id`),
-  KEY `index_delegates_on_country_id` (`country_id`)
+  KEY `index_delegates_on_delegate_subregion_id` (`delegate_subregion_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 DROP TABLE IF EXISTS `eligible_country_iso2s_for_championship`;
@@ -1643,8 +1642,6 @@ INSERT INTO `schema_migrations` (version) VALUES
 ('20190814232833'),
 ('20190816001639'),
 ('20190816004605'),
-('20190817170648'),
-('20190817193315'),
 ('20190817155010'),
 ('20190817161100'),
 ('20190817162434'),
