@@ -17,10 +17,10 @@
             <td><%= region.friendly_id %></td>
             <td><%= region.name %></td>
             <td>
-             <%= users_to_sentence region.current_delegates.includes(:user).map(&:user) %>
+             <%= users_to_sentence region.current_delegates.includes(:user).map(&:user).uniq %>
             </td>
             <td>
-               <%= users_to_sentence region.current_delegates.where(status: 'Senior').map(&:user) %>
+               <%= users_to_sentence region.current_delegates.where(status: 'Senior').map(&:user).uniq %>
             </td>
             <td>
              <%= link_to icon("fas", "edit", "Manage"), edit_team_path(region), class: "btn btn-success" %>
