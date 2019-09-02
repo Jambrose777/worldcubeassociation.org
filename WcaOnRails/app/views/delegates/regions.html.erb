@@ -17,13 +17,13 @@
             <td><%= region.friendly_id %></td>
             <td><%= region.name %></td>
             <td>
-             <%= users_to_sentence team.current_members.includes(:user).map(&:user) %>
+             <%= users_to_sentence region.current_delegates.includes(:user).map(&:user) %>
             </td>
             <td>
-               <%= users_to_sentence team.current_members.where(team_leader: true).map(&:user) %>
+               <%= users_to_sentence region.current_delegates.where(status: 'Senior').map(&:user) %>
             </td>
             <td>
-             <%= link_to icon("fas", "edit", "Manage"), edit_region_path(region), class: "btn btn-success" %>
+             <%= link_to icon("fas", "edit", "Manage"), edit_team_path(region), class: "btn btn-success" %>
             </td>
           </tr>
         <% end %>
