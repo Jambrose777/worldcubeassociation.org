@@ -120,6 +120,7 @@ Rails.application.routes.draw do
 
   get 'admin/delegates' => 'delegates#stats', as: :delegates_stats
   get 'delegates/regions' => 'delegates#regions'
+  get 'delegates/regions/:id' => 'delegates#region'
 
   get 'robots' => 'static_pages#robots'
 

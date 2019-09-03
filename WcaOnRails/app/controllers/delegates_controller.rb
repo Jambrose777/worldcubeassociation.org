@@ -11,4 +11,8 @@ class DelegatesController < ApplicationController
   def regions
     @delegate_regions = DelegateRegion.all
   end
+
+  def region
+    @region = DelegateRegion.find_by_id(params[:id])
+  end
 end
