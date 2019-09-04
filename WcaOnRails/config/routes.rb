@@ -119,8 +119,9 @@ Rails.application.routes.draw do
   post 'upload/image', to: 'upload#image'
 
   get 'admin/delegates' => 'delegates#stats', as: :delegates_stats
-  get 'delegates/regions' => 'delegates#regions'
-  get 'delegates/regions/:id' => 'delegates#region'
+  namespace :delegates do
+    resources :regions, only: [:index, :show]
+  end
 
   get 'robots' => 'static_pages#robots'
 
