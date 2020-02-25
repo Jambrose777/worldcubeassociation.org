@@ -21,6 +21,7 @@ class User < ApplicationRecord
   has_many :oauth_applications, class_name: 'Doorkeeper::Application', as: :owner
   has_many :user_preferred_events, dependent: :destroy
   has_many :preferred_events, through: :user_preferred_events, source: :event
+  has_many :delegates
 
   scope :confirmed_email, -> { where.not(confirmed_at: nil) }
 
@@ -87,6 +88,21 @@ class User < ApplicationRecord
   }
   has_many :subordinate_delegates, class_name: "User", foreign_key: "senior_delegate_id"
   belongs_to :senior_delegate, -> { where(delegate_status: "senior_delegate").order(:name) }, class_name: "User"
+
+  def new_delegate_status(region) 
+    statuses = delegates.current.select { |delegate| delegate.delegate_region == region }.map { |delegate| delegate.status}
+    if statuses.include?('senior')
+      'senior'
+    elsif statuses.include?('regional')
+      'regional'
+    elsif statuses.include?('full')
+      'full'
+    elsif statuses.include?('candidate')
+      'candidate'
+    else
+      nil
+    end
+  end
 
   validate :wca_id_is_unique_or_for_dummy_account
   def wca_id_is_unique_or_for_dummy_account

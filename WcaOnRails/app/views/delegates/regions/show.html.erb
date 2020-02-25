@@ -1,0 +1,26 @@
+<% provide(:title, "#{@region.name} Delegates") %>
+
+<div class="container">
+  <h3><%= yield(:title) %></h3>
+
+  <div class="table-responsive">
+  <table class="table">
+    <tr>
+      <th>Delegate</th>
+      <th>Status</th>
+      <th>Country</th>
+      <th>Location</th>
+      <th>Start Date</th>
+    </tr>
+    <% @region.current_delegates.map {|delegate| delegate.user }.uniq.each do |delegate| %>
+      <tr>
+        <td><%=delegate.name%></td>
+        <td><%=delegate.new_delegate_status(@region).camelize %> Delegate</td>
+        <td><%=delegate%></td>
+        <td><%=delegate%></td>
+        <td><%=delegate%></td>
+      </tr>
+    <% end %>
+  </table>
+</div>
+</div>
