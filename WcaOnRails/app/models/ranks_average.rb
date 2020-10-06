@@ -24,5 +24,6 @@ class RanksAverage < ApplicationRecord
   alias_attribute :event_id, :eventId
   alias_attribute :country_rank, :countryRank
   alias_attribute :continent_rank, :continentRank
+  alias_attribute :gender_rank, :genderRank
   alias_attribute :world_rank, :worldRank
 end

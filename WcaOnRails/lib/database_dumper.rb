@@ -238,6 +238,7 @@ module DatabaseDumper
           eventId
           personId
           worldRank
+          genderRank
         ),
       ),
     }.freeze,
@@ -252,6 +253,7 @@ module DatabaseDumper
           eventId
           personId
           worldRank
+          genderRank
         ),
       ),
     }.freeze,

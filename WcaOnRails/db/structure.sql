@@ -114,7 +114,8 @@ CREATE TABLE `ConciseAverageResults` (
   `continentId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
   `year` smallint(5) unsigned NOT NULL DEFAULT '0',
   `month` smallint(5) unsigned NOT NULL DEFAULT '0',
-  `day` smallint(5) unsigned NOT NULL DEFAULT '0'
+  `day` smallint(5) unsigned NOT NULL DEFAULT '0',
+  `gender` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 DROP TABLE IF EXISTS `ConciseSingleResults`;
@@ -130,7 +131,8 @@ CREATE TABLE `ConciseSingleResults` (
   `continentId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
   `year` smallint(5) unsigned NOT NULL DEFAULT '0',
   `month` smallint(5) unsigned NOT NULL DEFAULT '0',
-  `day` smallint(5) unsigned NOT NULL DEFAULT '0'
+  `day` smallint(5) unsigned NOT NULL DEFAULT '0',
+  `gender` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 DROP TABLE IF EXISTS `Continents`;
@@ -261,6 +263,7 @@ CREATE TABLE `RanksAverage` (
   `worldRank` int(11) NOT NULL DEFAULT '0',
   `continentRank` int(11) NOT NULL DEFAULT '0',
   `countryRank` int(11) NOT NULL DEFAULT '0',
+  `genderRank` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `fk_persons` (`personId`),
   KEY `fk_events` (`eventId`)
@@ -277,6 +280,7 @@ CREATE TABLE `RanksSingle` (
   `worldRank` int(11) NOT NULL DEFAULT '0',
   `continentRank` int(11) NOT NULL DEFAULT '0',
   `countryRank` int(11) NOT NULL DEFAULT '0',
+  `genderRank` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `fk_persons` (`personId`),
   KEY `fk_events` (`eventId`)
@@ -1656,4 +1660,5 @@ INSERT INTO `schema_migrations` (version) VALUES
 ('20200607140007'),
 ('20200627195628'),
 ('20200319193625'),
-('20200725152218');
+('20200725152218'),
+('20201006000224');

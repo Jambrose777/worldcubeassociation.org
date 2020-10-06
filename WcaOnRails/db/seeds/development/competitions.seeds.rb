@@ -135,6 +135,7 @@ after "development:users" do
       worldRank: i,
       continentRank: i,
       countryRank: i,
+      genderRank: i,
     )
 
     RanksSingle.create!(
@@ -144,6 +145,7 @@ after "development:users" do
       worldRank: i,
       continentRank: i,
       countryRank: i,
+      genderRank: i,
     )
   end
 

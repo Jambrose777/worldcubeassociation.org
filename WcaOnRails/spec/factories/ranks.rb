@@ -10,6 +10,7 @@ FactoryBot.define do
     worldRank { rank }
     continentRank { rank }
     countryRank { rank }
+    genderRank { rank }
   end
 
   factory :ranks_single do
@@ -21,5 +22,6 @@ FactoryBot.define do
     worldRank { rank }
     continentRank { rank }
     countryRank { rank }
+    genderRank { rank }
   end
 end
