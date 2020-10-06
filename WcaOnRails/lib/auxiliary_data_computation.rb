@@ -26,9 +26,9 @@ module AuxiliaryDataComputation
             eventId,
             country.id countryId,
             continentId,
-            year, 
-            month, 
-            day,
+            competition.year year, 
+            competition.month month, 
+            competition.day day,
             gender
           FROM (
               SELECT MIN(#{field} * 1000000000 + result.id) valueAndId
@@ -38,6 +38,7 @@ module AuxiliaryDataComputation
               GROUP BY personId, result.countryId, eventId, year
             ) MinValuesWithId
             JOIN Results result ON result.id = valueAndId % 1000000000
+            JOIN Persons persons on persons.id = result.personId AND persons.subId = 1
             JOIN Competitions competition ON competition.id = competitionId
             JOIN Countries country ON country.id = result.countryId
             JOIN Events event ON event.id = eventId
@@ -61,7 +62,7 @@ module AuxiliaryDataComputation
         personal_records_with_event = ActiveRecord::Base.connection.execute <<-SQL
           SELECT eventId, personId, countryId, continentId, gender, min(#{field}) value
           FROM #{concise_table_name}
-          GROUP BY personId, countryId, continentId, eventId
+          GROUP BY personId, countryId, continentId, eventId, gender
           ORDER BY eventId, value
         SQL
         personal_records_with_event.group_by(&:first).each do |event_id, personal_records|
@@ -73,7 +74,7 @@ module AuxiliaryDataComputation
           personal_records.each do |_, person_id, country_id, continent_id, gender, value|
             # Update the region states (unless we have ranked this person already,
             # e.g. 2008SEAR01 twice in North America and World because of his two countries).
-            ["World", continent_id, country_id].each do |region|
+            ["World", continent_id, country_id, gender].each do |region|
               next if ranked[region][person_id]
               counter[region] += 1
               # As we ordered by value it can either be greater or tie the previous one.

@@ -45,8 +45,8 @@ if( $chosenExport ){
                                 formatId, value1, value2, value3, value4, value5,
                                 regionalSingleRecord, regionalAverageRecord
                        FROM     Results',
-    'RanksSingle'  => 'SELECT personId, eventId, best, worldRank, continentRank, countryRank FROM RanksSingle',
-    'RanksAverage' => 'SELECT personId, eventId, best, worldRank, continentRank, countryRank FROM RanksAverage',
+    'RanksSingle'  => 'SELECT personId, eventId, best, worldRank, continentRank, countryRank, genderRank FROM RanksSingle',
+    'RanksAverage' => 'SELECT personId, eventId, best, worldRank, continentRank, countryRank, genderRank FROM RanksAverage',
     'Rounds'       => 'SELECT "Sorry for changing the database schema again. Please sign up for https://groups.google.com/forum/#!forum/wca-software-public to receive updates about these sorts of things." as sorry_message',
     'RoundTypes'   => '*',
     'Events'       => '*',
