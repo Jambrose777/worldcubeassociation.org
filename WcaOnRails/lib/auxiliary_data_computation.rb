@@ -91,7 +91,8 @@ module AuxiliaryDataComputation
             if country_id == current_country_by_wca_id[person_id]
               personal_rank[person_id][:country_rank] ||= current_rank[country_id]
             end
-            if gender == current_gender_by_wca_id[person_id]
+            # set rankings for male and female (other and null do not show rankings)
+            if (["m", "f"].include? gender) && gender == current_gender_by_wca_id[person_id]
               personal_rank[person_id][:gender_rank] ||= current_rank[gender]
             end
           end
